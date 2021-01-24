@@ -1,0 +1,48 @@
+﻿@page
+@model MyPhonebook.Pages.Emails.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email[0].ElectonicMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email[0].isActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email[0].Users)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Email) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectonicMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.EmailID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.EmailID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.EmailID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

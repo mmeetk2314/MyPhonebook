@@ -1,0 +1,54 @@
+﻿@page
+@model MyPhonebook.Pages.Phones.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone[0].LandLineNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone[0].MobileNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone[0].isUsingWhatsApp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone[0].Users)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Phone) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandLineNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isUsingWhatsApp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PhoneId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PhoneId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PhoneId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
